@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionIntro from '@/components/SectionIntro.astro';
+import { faqs } from '@/data/content';
+---
+
+<BaseLayout title="よくある質問｜平野の浜" description="平野の浜の入場料、利用時間、駐車、トイレ、富士山、白鳥、冬の運転、キャンプについて回答します。">
+  <PageHero eyebrow="FAQ" title="訪れる前に、知っておくこと。" lead="湖岸は自然条件と現地運用の影響を受けます。変わりやすい情報を断定せず、当日に安全な判断ができるよう基本をまとめました。" image="/images/winter-swan.webp" imageAlt="山中湖の白鳥と富士山" />
+
+  <section class="reading-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="QUESTIONS" title="よくある質問" />
+    <div class="divide-y hairline border-y hairline">
+      {faqs.map((faq, index) => (
+        <details class="group py-5">
+          <summary class="grid cursor-pointer list-none grid-cols-[2.6rem_1fr_auto] items-start gap-3 marker:hidden">
+            <span class="font-mono text-sm text-lake-400">Q{String(index + 1).padStart(2, '0')}</span>
+            <h2 class="mincho text-lg leading-8 sm:text-xl">{faq.question}</h2>
+            <span class="mt-1 text-xl text-lake-500 transition group-open:rotate-45" aria-hidden="true">＋</span>
+          </summary>
+          <div class="grid grid-cols-[2.6rem_1fr] gap-3 pt-4">
+            <span class="font-mono text-sm text-dawn-600">A</span>
+            <p class="text-sm leading-8 text-lake-700 sm:text-base">{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell pb-12">
+    <div class="bg-lake-900 p-8 text-white sm:p-12">
+      <p class="text-xs font-bold tracking-[0.18em] text-lake-300">LAST CHECK</p>
+      <h2 class="mt-4 mincho text-3xl">最後は、現地の表示を確認してください。</h2>
+      <p class="mt-5 max-w-3xl text-sm leading-8 text-lake-200">車両規制、工事、イベント、積雪、水位、周辺施設の営業は変わります。本サイトは旅の計画を助ける非公式ガイドであり、当日の利用を保証するものではありません。</p>
+    </div>
+  </section>
+</BaseLayout>

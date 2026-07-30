@@ -1,0 +1,101 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { DEFAULT_SITE_URL, siteConfig } from '@/config/site';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  pageType?: 'website' | 'article';
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = siteConfig.defaultImage,
+  noindex = false,
+  pageType = 'website',
+} = Astro.props;
+
+const baseUrl = Astro.site ?? new URL(DEFAULT_SITE_URL);
+const canonical = new URL(Astro.url.pathname, baseUrl).toString();
+const socialImage = new URL(image, baseUrl).toString();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${baseUrl.toString()}#website`,
+      url: baseUrl.toString(),
+      name: siteConfig.name,
+      inLanguage: 'ja',
+    },
+    {
+      '@type': 'TouristAttraction',
+      name: '平野の浜',
+      description: siteConfig.description,
+      image: socialImage,
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: '山梨県',
+        addressLocality: '南都留郡山中湖村',
+        streetAddress: '平野',
+        addressCountry: 'JP',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: siteConfig.coordinates.latitude,
+        longitude: siteConfig.coordinates.longitude,
+      },
+      isAccessibleForFree: true,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#253034" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.ga4Id}`}></script>
+    <script is:inline define:vars={{ ga4Id: siteConfig.ga4Id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', ga4Id, { anonymize_ip: true });
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">本文へ移動</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

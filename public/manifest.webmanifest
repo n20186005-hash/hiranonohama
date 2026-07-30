@@ -1,0 +1,16 @@
+{
+  "name": "平野の浜｜山中湖と富士山の絶景ガイド",
+  "short_name": "平野の浜",
+  "lang": "ja",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f7f2",
+  "theme_color": "#253034",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

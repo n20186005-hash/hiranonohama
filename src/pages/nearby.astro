@@ -1,0 +1,77 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionIntro from '@/components/SectionIntro.astro';
+import Notice from '@/components/Notice.astro';
+import { nearbySpots } from '@/data/content';
+---
+
+<BaseLayout title="平野の浜の周辺案内｜山中湖" description="山中湖交流プラザきらら、パノラマ台、平野天満宮、石割の湯、長池親水公園を組み合わせた周遊案内。">
+  <PageHero eyebrow="NEARBY" title="湖岸から、もう一歩。" lead="低い目線で富士山と向き合う平野の浜。そこから展望台、温泉、神社、別角度の湖岸へ足を延ばすと、山中湖の奥行きが見えてきます。" image="/images/winter-fuji.webp" imageAlt="山中湖周辺から望む冬の富士山" />
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="PLACES" title="一緒に訪れたい五つの場所" />
+    <div class="divide-y hairline border-y hairline">
+      {nearbySpots.map((spot, index) => (
+        <article class="grid gap-5 py-8 md:grid-cols-[5rem_1fr_0.65fr] md:items-start md:py-10">
+          <p class="mincho text-4xl text-lake-300">0{index + 1}</p>
+          <div>
+            <span class="text-xs font-bold tracking-[0.16em] text-dawn-600">{spot.type}</span>
+            <h2 class="mt-2 mincho text-2xl sm:text-3xl">{spot.name}</h2>
+            <p class="mt-4 max-w-2xl text-sm leading-8 text-lake-700">{spot.description}</p>
+          </div>
+          <p class="text-sm leading-7 text-lake-600 md:border-l md:pl-6 hairline">{spot.time}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="HALF-DAY PLANS" title="半日で巡る二つのコース" />
+      <div class="grid gap-8 lg:grid-cols-2">
+        <article class="bg-sand-100 p-7 sm:p-10">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-500">WITHOUT A CAR</p>
+          <h2 class="mt-4 mincho text-3xl">歩いて、平野を知る</h2>
+          <ol class="mt-8 space-y-6">
+            {[
+              ['山中湖平野', 'バスを降り、帰りの時刻を確認'],
+              ['平野の浜', '湖面と富士山を30〜60分'],
+              ['昼食', '徒歩圏のそば・カフェへ'],
+              ['平野天満宮', '地域の文化に触れる'],
+              ['きらら周辺', '湖畔散策を追加'],
+            ].map(([name, copy], index) => (
+              <li class="grid grid-cols-[2rem_1fr] gap-3">
+                <span class="font-mono text-sm text-lake-400">{index + 1}</span>
+                <div><strong class="block">{name}</strong><span class="mt-1 block text-sm text-lake-700">{copy}</span></div>
+              </li>
+            ))}
+          </ol>
+        </article>
+        <article class="bg-lake-900 p-7 text-white sm:p-10">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">BY CAR</p>
+          <h2 class="mt-4 mincho text-3xl">低い湖岸と、高い展望</h2>
+          <ol class="mt-8 space-y-6">
+            {[
+              ['平野の浜', '早朝の富士山を撮影'],
+              ['朝食', '長池方面へ移動'],
+              ['長池親水公園', '別角度の湖畔景観'],
+              ['パノラマ台', '山中湖を高所から一望'],
+              ['石割の湯', '温泉で旅を締める'],
+            ].map(([name, copy], index) => (
+              <li class="grid grid-cols-[2rem_1fr] gap-3">
+                <span class="font-mono text-sm text-lake-300">{index + 1}</span>
+                <div><strong class="block">{name}</strong><span class="mt-1 block text-sm text-lake-200">{copy}</span></div>
+              </li>
+            ))}
+          </ol>
+        </article>
+      </div>
+      <div class="mt-10">
+        <Notice title="標高差と天候差に注意">
+          湖畔が穏やかでも、パノラマ台は風が強く、冬は路面状況も変わります。暗くなる前に高所から戻れる時間配分にしてください。
+        </Notice>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

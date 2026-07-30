@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Notice from '@/components/Notice.astro';
+---
+
+<BaseLayout title="このサイトについて｜平野の浜" description="平野の浜 非公式観光ガイドの編集方針、写真、情報の扱いについて説明します。">
+  <PageHero eyebrow="ABOUT" title="静かな旅を、正確な案内で。" lead="このサイトは、平野の浜を訪れる人が、景色だけでなく安全と地域への配慮まで含めて旅を組み立てられるよう制作した非公式ガイドです。" image="/images/summer-reflection.webp" imageAlt="山中湖と富士山の夏景色" />
+
+  <article class="reading-shell prose-jp py-20 text-sm leading-8 text-lake-700 sm:py-28 sm:text-base">
+    <h2>編集方針</h2>
+    <p>観光情報を断定的に並べるのではなく、天候、水位、交通、季節営業など「変わる可能性がある情報」を明確に区別しています。現地の表示、交通事業者、施設運営者の当日案内が、本サイトの記載より優先されます。</p>
+
+    <h2>非公式ガイドです</h2>
+    <p>本サイトは山中湖村、観光協会、交通事業者、店舗、施設の公式サイトではありません。予約、問い合わせの取次ぎ、現地利用の保証は行っていません。</p>
+
+    <h2>写真について</h2>
+    <p>ページ内では、山中湖周辺で撮影された実景写真を使用しています。撮影地点、季節、焦点距離によって、実際に見える富士山の大きさや方向は異なります。</p>
+    <p>掲載写真は Alpsdake が Wikimedia Commons へ提供した CC0 または Public Domain の画像を中心に、サイト内へ保存して使用しています。ページ表示時に外部画像サーバーから読み込む構成ではありません。</p>
+
+    <h2>写真カード機能</h2>
+    <p>利用者が選んだ画像はブラウザ内の Canvas API で処理され、サーバーへ送信されません。画像、入力した言葉、日付を本サイトが保存することもありません。</p>
+
+    <Notice title="情報の更新について">
+      営業時間、道路、バス、湖岸利用、駐車、トイレ等は予告なく変わることがあります。旅行当日の確認をお願いします。
+    </Notice>
+  </article>
+</BaseLayout>

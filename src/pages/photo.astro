@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionIntro from '@/components/SectionIntro.astro';
+import Notice from '@/components/Notice.astro';
+---
+
+<BaseLayout title="富士山撮影ガイド｜平野の浜" description="平野の浜で朝焼け、逆さ富士、白鳥、冬景色を撮るための時間帯、構図、持ち物を紹介します。" pageType="article">
+  <PageHero eyebrow="PHOTO GUIDE" title="風と光を、待つ。" lead="平野の浜の写真は、特別な機材よりも時間の選び方で変わります。風の弱い朝、光が斜めに入る夕方、季節ごとの富士山の輪郭を読み解きます。" image="/images/reflection-fuji.webp" imageAlt="山中湖の水面に映る富士山" />
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="TIME OF DAY" title="三つの時間、三つの表情。" />
+    <div class="grid gap-px bg-lake-900/15 lg:grid-cols-3">
+      <article class="bg-[#f8f7f2] p-7 sm:p-9">
+        <p class="mincho text-5xl text-lake-300">朝</p>
+        <h2 class="mt-5 mincho text-2xl">逆さ富士と静かな湖</h2>
+        <p class="mt-4 text-sm leading-8 text-lake-700">日の出前後は風が弱いことが多く、湖面反射を狙いやすい時間。到着時は暗いため、足元用ライトを忘れずに。</p>
+      </article>
+      <article class="bg-[#f8f7f2] p-7 sm:p-9">
+        <p class="mincho text-5xl text-lake-300">昼</p>
+        <h2 class="mt-5 mincho text-2xl">青と白の開放感</h2>
+        <p class="mt-4 text-sm leading-8 text-lake-700">湖の青さが出やすく、散策しながら構図を探せます。夏は雲が増えやすいため、富士山目的なら午前中が安心です。</p>
+      </article>
+      <article class="bg-[#f8f7f2] p-7 sm:p-9">
+        <p class="mincho text-5xl text-lake-300">夕</p>
+        <h2 class="mt-5 mincho text-2xl">逆光と輪郭</h2>
+        <p class="mt-4 text-sm leading-8 text-lake-700">秋冬は富士山方向へ日が沈みます。露出差が大きいため、空の明るさを残しながら人物や岸辺をシルエットに。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="COMPOSITION" title="余白を残す構図" copy="富士山を大きく撮るだけでなく、湖面、岸辺、白鳥、人の距離を残すと、平野の浜らしい静けさが伝わります。" />
+      <div class="grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
+        <figure>
+          <img src="/images/winter-swan.webp" alt="白鳥と富士山を一緒に写した山中湖の冬景色" width="1600" height="1024" class="aspect-[16/10] w-full object-cover" loading="lazy" />
+          <figcaption class="mt-3 text-xs leading-6 text-lake-600">白鳥を追わず、動きを待つ。野生動物との距離を保ったまま、湖面の余白を画面に残します。</figcaption>
+        </figure>
+        <div class="grid content-start gap-6">
+          <article class="border-t hairline pt-5">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">WIDE · 24–35mm</p>
+            <h3 class="mt-2 mincho text-xl">湖岸の広さを写す</h3>
+            <p class="mt-3 text-sm leading-7 text-lake-700">空と水面を大きく入れ、人物や車は小さく配置。水平線を丁寧に整えます。</p>
+          </article>
+          <article class="border-t hairline pt-5">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">STANDARD · 50mm</p>
+            <h3 class="mt-2 mincho text-xl">肉眼に近い距離感</h3>
+            <p class="mt-3 text-sm leading-7 text-lake-700">富士山と湖面を自然な比率で。スマートフォンなら1倍前後から試します。</p>
+          </article>
+          <article class="border-t hairline pt-5">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">TELE · 85–200mm</p>
+            <h3 class="mt-2 mincho text-xl">山の存在感を寄せる</h3>
+            <p class="mt-3 text-sm leading-7 text-lake-700">離れた岸辺や白鳥と富士山を圧縮。通行を妨げず、安全な位置から撮影します。</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="FIELD NOTES" title="現地で役立つ小さな準備" />
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        ['レンズを拭く布', '湖畔の湿気や雪でレンズが曇るときに。予備もあると安心です。'],
+        ['小さなライト', '日の出前の足元確認に。周囲の撮影者へ向けないよう配慮します。'],
+        ['薄手の手袋', '冬だけでなく春秋の早朝にも。操作できる指先タイプが便利です。'],
+        ['温かい飲み物', '待つ時間を快適に。ごみは必ず持ち帰ります。'],
+      ].map(([name, description], index) => (
+        <article class="border-t hairline pt-5">
+          <p class="text-xs font-bold tracking-[0.16em] text-lake-400">0{index + 1}</p>
+          <h2 class="mt-3 mincho text-xl">{name}</h2>
+          <p class="mt-3 text-sm leading-7 text-lake-700">{description}</p>
+        </article>
+      ))}
+    </div>
+    <div class="mt-12">
+      <Notice title="三脚と白鳥への配慮">
+        三脚は通行を塞がない場所に短時間で設置します。白鳥や野鳥を追い回さず、近づいてきた場合も触れないでください。
+      </Notice>
+    </div>
+  </section>
+
+  <section class="site-shell pb-12">
+    <SectionIntro eyebrow="GALLERY" title="山中湖、光の記録。" copy="山中湖周辺で撮影された実景写真です。季節、天候、撮影地点によって、見える富士山の大きさや湖面の表情は変わります。" />
+    <div class="grid gap-4 md:grid-cols-12">
+      <figure class="md:col-span-7">
+        <img src="/images/red-fuji.webp" alt="朝の光で赤く染まる富士山" width="960" height="445" class="h-full min-h-72 w-full object-cover" loading="lazy" />
+      </figure>
+      <figure class="md:col-span-5">
+        <img src="/images/winter-fuji.webp" alt="冬の山中湖から望む富士山" width="1789" height="1101" class="h-full min-h-72 w-full object-cover" loading="lazy" />
+      </figure>
+      <figure class="md:col-span-5">
+        <img src="/images/sunflower-fuji.webp" alt="夏の花と富士山" width="1620" height="1024" class="h-full min-h-72 w-full object-cover" loading="lazy" />
+      </figure>
+      <figure class="md:col-span-7">
+        <img src="/images/summer-reflection.webp" alt="緑の季節の山中湖と富士山" width="1600" height="1065" class="h-full min-h-72 w-full object-cover" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+</BaseLayout>

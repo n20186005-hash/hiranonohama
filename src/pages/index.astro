@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import SectionIntro from '@/components/SectionIntro.astro';
+import Notice from '@/components/Notice.astro';
+import { seasons } from '@/data/content';
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden bg-lake-900 text-white">
+    <img src="/images/hero.webp" alt="山中湖の白鳥と雪をいただく富士山" width="1800" height="1200" class="absolute inset-0 h-full w-full object-cover opacity-75" fetchpriority="high" />
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,29,33,0.82)_0%,rgba(18,29,33,0.34)_58%,rgba(18,29,33,0.18)_100%)]"></div>
+    <div class="site-shell relative flex min-h-[72svh] items-end py-14 sm:min-h-[78svh] sm:py-20">
+      <div class="grid w-full gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div class="reveal max-w-4xl">
+          <p class="text-xs font-bold tracking-[0.24em] text-white/75">HIRANO NO HAMA · LAKE YAMANAKA</p>
+          <h1 class="mt-5 mincho text-[clamp(2.9rem,8vw,7.2rem)] leading-[1.14] tracking-[0.1em]">
+            湖面に映る富士を、<br class="hidden sm:block" />静かな岸辺から。
+          </h1>
+          <p class="mt-7 max-w-2xl text-sm leading-8 text-white/82 sm:text-base">
+            山中湖の北東岸に広がる平野の浜。朝の光、風のない水面、白鳥の気配。富士山と向き合う時間を、迷わず組み立てるための旅案内です。
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="/access/" class="cta-button cta-button--light">行き方を見る</a>
+            <a href="/photo/" class="cta-button cta-button--ghost">撮影の時間を選ぶ</a>
+          </div>
+        </div>
+        <p class="vertical-label hidden text-xs tracking-[0.25em] text-white/65 lg:block">山梨県・山中湖村平野</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b hairline bg-white/45">
+    <div class="site-shell grid sm:grid-cols-3">
+      <div class="border-b hairline px-2 py-7 sm:border-b-0 sm:border-r sm:px-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">PRICE</p>
+        <p class="mt-2 mincho text-xl tracking-[0.1em]">入場無料</p>
+      </div>
+      <div class="border-b hairline px-2 py-7 sm:border-b-0 sm:border-r sm:px-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">ACCESS</p>
+        <p class="mt-2 mincho text-xl tracking-[0.1em]">平野バス停から徒歩約5分</p>
+      </div>
+      <div class="px-2 py-7 sm:px-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">STAY</p>
+        <p class="mt-2 mincho text-xl tracking-[0.1em]">滞在の目安 30〜90分</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <div class="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div>
+        <SectionIntro eyebrow="ABOUT THE SHORE" title="湖と富士山の間に、余白がある。" copy="平野の浜は、遊具や大きな建物を目的に訪れる場所ではありません。視界を遮るものが少ない岸辺で、湖面の変化と富士山の輪郭をじっくり見る場所です。" />
+        <p class="text-sm leading-8 text-lake-700">
+          風が止まれば逆さ富士が現れ、冬には雪化粧した山と白鳥が同じ景色に入ることもあります。富士山は雲に隠れる日もあるからこそ、時間帯と季節を選ぶことが旅の満足度を左右します。
+        </p>
+        <a href="/photo/" class="soft-link mt-8">撮影ガイドへ</a>
+      </div>
+      <div class="relative lg:pl-16">
+        <img src="/images/reflection-fuji.webp" alt="静かな山中湖に映る富士山" width="1600" height="1078" class="aspect-[5/4] w-full object-cover" loading="lazy" />
+        <div class="editorial-card -mt-12 ml-6 max-w-sm p-6 sm:ml-auto sm:mr-8">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-500">BEST MOMENT</p>
+          <p class="mt-3 mincho text-xl leading-8">日の出前後。風が弱く、雲が増える前の時間。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-lake-900 py-24 text-white sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="BEFORE YOU GO" title="今日の景色は、出発前に決まる。" copy="富士山の見え方、湖面の風、冬の道路。現地へ着いてから困らないよう、三つの条件を先に確認します。" />
+      <div class="grid gap-px overflow-hidden bg-white/15 lg:grid-cols-3">
+        <article class="bg-lake-900 p-7 sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">01 · CLOUD</p>
+          <h3 class="mt-4 mincho text-2xl">富士山側の雲</h3>
+          <p class="mt-4 text-sm leading-7 text-lake-200">山中湖が晴れていても、山頂だけ雲に隠れることがあります。天気予報と湖畔のライブ映像を両方確認します。</p>
+        </article>
+        <article class="bg-lake-900 p-7 sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">02 · WIND</p>
+          <h3 class="mt-4 mincho text-2xl">湖面の風</h3>
+          <p class="mt-4 text-sm leading-7 text-lake-200">逆さ富士を狙うなら風速が重要です。早朝の穏やかな時間を選び、波が立った日は景色そのものを楽しみます。</p>
+        </article>
+        <article class="bg-lake-900 p-7 sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">03 · ROAD</p>
+          <h3 class="mt-4 mincho text-2xl">冬の路面</h3>
+          <p class="mt-4 text-sm leading-7 text-lake-200">標高約千メートルの湖畔では凍結が起こります。冬用タイヤ、防寒具、日の出前の慎重な運転が必要です。</p>
+        </article>
+      </div>
+      <Notice title="現地の案内を最優先に">
+        湖畔への車両進入可否や駐車可能範囲は、天候、水位、路面、イベント等で変わります。当日の標識と係員の案内に従ってください。
+      </Notice>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="FOUR SEASONS" title="同じ岸辺に、四つの表情。" copy="季節ごとの美しさと注意点を知ると、旅の持ち物と時間の選び方が変わります。" />
+    <div class="grid gap-8 sm:grid-cols-2">
+      {seasons.map((item, index) => (
+        <article class="group border-t hairline pt-5">
+          <div class="overflow-hidden bg-lake-100">
+            <img src={item.image} alt={`${item.season}の山中湖と富士山`} width="1600" height="1065" class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.025]" loading="lazy" />
+          </div>
+          <div class="grid grid-cols-[auto_1fr] gap-5 pt-5">
+            <span class="mincho text-3xl text-lake-400">0{index + 1}</span>
+            <div>
+              <p class="text-xs font-bold tracking-[0.16em] text-lake-500">{item.season}</p>
+              <h3 class="mt-2 mincho text-2xl tracking-[0.06em]">{item.label}</h3>
+              <p class="mt-3 text-sm leading-7 text-lake-700">{item.description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell pb-12">
+    <div class="relative overflow-hidden bg-sand-100 px-6 py-16 sm:px-12 lg:px-16">
+      <div class="absolute right-0 top-0 h-full w-1/3 bg-[linear-gradient(135deg,transparent,rgba(127,159,164,0.22))]"></div>
+      <div class="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div>
+          <p class="eyebrow">LOCAL PHOTO TOOL</p>
+          <h2 class="mt-5 mincho text-[clamp(2rem,5vw,4rem)] leading-[1.35] tracking-[0.08em]">旅の一枚を、<br />静かな記念カードに。</h2>
+          <p class="mt-5 max-w-2xl text-sm leading-8 text-lake-700">写真は端末の中だけで処理され、サーバーへ送られません。日付と短い言葉を添えて、自分だけの平野の浜カードを保存できます。</p>
+        </div>
+        <a href="/photo-card/" class="cta-button cta-button--dark">写真カードをつくる</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

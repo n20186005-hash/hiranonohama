@@ -1,0 +1,41 @@
+---
+import { navigation } from '@/config/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-28 border-t hairline bg-lake-900 text-lake-50">
+  <div class="site-shell grid gap-14 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+    <div>
+      <p class="mincho text-2xl tracking-[0.16em]">平野の浜</p>
+      <p class="mt-4 max-w-xl text-sm leading-8 text-lake-200">
+        山中湖と富士山を静かに楽しむための非公式観光ガイドです。現地の規制、交通、営業情報は変わる場合があります。案内表示と各運営者の最新情報を優先してください。
+      </p>
+      <p class="mt-8 text-xs leading-6 text-lake-300">
+        掲載写真：Alpsdake / Wikimedia Commons（CC0・Public Domain）。山中湖周辺で撮影された実景写真を使用しています。
+      </p>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div>
+        <p class="text-xs font-bold tracking-[0.18em] text-lake-300">GUIDE</p>
+        <nav class="mt-4 grid gap-2" aria-label="フッターナビゲーション">
+          {navigation.map((item) => <a href={item.href} class="text-sm no-underline hover:text-white">{item.label}</a>)}
+        </nav>
+      </div>
+      <div>
+        <p class="text-xs font-bold tracking-[0.18em] text-lake-300">INFORMATION</p>
+        <nav class="mt-4 grid gap-2" aria-label="サイト情報">
+          <a href="/photo-card/" class="text-sm no-underline hover:text-white">旅の写真カード</a>
+          <a href="/about/" class="text-sm no-underline hover:text-white">このサイトについて</a>
+          <a href="/privacy/" class="text-sm no-underline hover:text-white">プライバシー</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="site-shell flex flex-col gap-2 py-5 text-xs text-lake-300 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} 平野の浜 非公式観光ガイド</p>
+      <p>静かな湖畔を、次の人へ。</p>
+    </div>
+  </div>
+</footer>

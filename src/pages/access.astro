@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionIntro from '@/components/SectionIntro.astro';
+import Notice from '@/components/Notice.astro';
+import { siteConfig } from '@/config/site';
+---
+
+<BaseLayout title="アクセス・駐車｜平野の浜" description="平野の浜への高速バス、周遊バス、自動車での行き方、駐車と冬季道路の注意点を案内します。">
+  <PageHero eyebrow="ACCESS" title="湖岸まで、迷わず。" lead="新宿から高速バス、富士山駅・河口湖駅から周遊バス、自家用車では山中湖ICから平野方面へ。到着後の動線まで、交通手段別に整理します。" image="/images/summer-reflection.webp" imageAlt="夏の山中湖と富士山の湖面反射" />
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="BY PUBLIC TRANSPORT" title="公共交通で行く" copy="日の出撮影を除けば、平野の浜は車がなくても訪れやすい湖岸です。最寄りは「山中湖平野」周辺です。" />
+    <div class="grid gap-6 lg:grid-cols-3">
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">FROM SHINJUKU</p>
+        <h2 class="mt-4 mincho text-2xl">バスタ新宿から</h2>
+        <ol class="mt-5 space-y-4 text-sm leading-7 text-lake-700">
+          <li><strong class="text-lake-900">1.</strong> 富士五湖方面の高速バスに乗車</li>
+          <li><strong class="text-lake-900">2.</strong> 「山中湖平野」で下車する便を選ぶ</li>
+          <li><strong class="text-lake-900">3.</strong> 湖側へ徒歩約5分</li>
+        </ol>
+        <p class="mt-6 border-t hairline pt-5 text-xs leading-6 text-lake-600">連休や週末は中央道の渋滞を見込み、帰りの便にも余裕を持たせます。</p>
+      </article>
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">FROM KAWAGUCHIKO</p>
+        <h2 class="mt-4 mincho text-2xl">河口湖・富士山駅から</h2>
+        <ol class="mt-5 space-y-4 text-sm leading-7 text-lake-700">
+          <li><strong class="text-lake-900">1.</strong> 山中湖方面の路線・周遊バスへ</li>
+          <li><strong class="text-lake-900">2.</strong> 平野方面へ向かう便を確認</li>
+          <li><strong class="text-lake-900">3.</strong> 山中湖平野周辺で下車</li>
+        </ol>
+        <p class="mt-6 border-t hairline pt-5 text-xs leading-6 text-lake-600">季節改正や運休があるため、乗車当日に停留所掲示と運行情報を確認してください。</p>
+      </article>
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">EARLY MORNING</p>
+        <h2 class="mt-4 mincho text-2xl">日の出を撮るなら</h2>
+        <p class="mt-5 text-sm leading-7 text-lake-700">公共交通の始発では日の出に間に合わない日が多いため、平野地区で前泊するか、事前予約した移動手段を使う計画が現実的です。</p>
+        <p class="mt-6 border-t hairline pt-5 text-xs leading-6 text-lake-600">暗い時間の徒歩移動では反射材とライトを用意し、路肩を歩く区間に注意します。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="BY CAR" title="自動車で行く" copy="東富士五湖道路の山中湖ICから、平野方面へ約15分が目安です。カーナビにはスポット名か座標を入力します。" />
+      <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+        <div class="border-y hairline">
+          <div class="grid gap-3 border-b hairline py-6 sm:grid-cols-[10rem_1fr]">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">AREA</p>
+            <p class="font-bold">山梨県南都留郡山中湖村平野</p>
+          </div>
+          <div class="grid gap-3 border-b hairline py-6 sm:grid-cols-[10rem_1fr]">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">COORDINATES</p>
+            <div>
+              <p class="font-mono text-sm">{siteConfig.coordinates.latitude}, {siteConfig.coordinates.longitude}</p>
+              <button id="copy-coordinates" type="button" class="mt-3 rounded-full border hairline px-4 py-2 text-xs font-bold tracking-[0.08em]">座標をコピー</button>
+              <span id="copy-status" class="ml-3 text-xs text-lake-600" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="grid gap-3 py-6 sm:grid-cols-[10rem_1fr]">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">SEARCH WORD</p>
+            <p>「平野の浜」または「山中湖 平野」</p>
+          </div>
+        </div>
+        <div class="bg-lake-900 p-7 text-white sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">WINTER DRIVE</p>
+          <h2 class="mt-4 mincho text-3xl">冬は「着くこと」より、無事に戻ること。</h2>
+          <p class="mt-5 text-sm leading-8 text-lake-200">積雪がなくても、橋、日陰、湖岸道路は凍結することがあります。冬用タイヤを使用し、日の出前と日没後は速度を十分に落としてください。</p>
+        </div>
+      </div>
+
+      <div class="mt-14 overflow-hidden border hairline bg-white/70">
+        <div class="grid gap-7 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p class="eyebrow">LOCATION MAP</p>
+            <h2 class="mt-4 mincho text-3xl tracking-[0.06em] text-lake-900 sm:text-4xl">地図で平野の浜を確認</h2>
+            <p class="mt-4 max-w-3xl text-sm leading-8 text-lake-700">湖岸への入口や当日の通行範囲は現地表示を優先してください。地図は位置の確認に使い、駐車場所は標識と係員の案内に従います。</p>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=35.4247002%2C138.9008237" class="cta-button cta-button--dark whitespace-nowrap" target="_blank" rel="noopener noreferrer">Google マップで開く</a>
+        </div>
+        <iframe
+          class="google-map-frame"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.2151412661515!2d138.9008237!3d35.4247002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60196fec8ed01c37%3A0xaea15f41d50a234a!2z5bmz6YeO44Gu5rWc!5e0!3m2!1sja!2sjp!4v1785404715977!5m2!1sja!2sjp"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="平野の浜のGoogleマップ"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="reading-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="PARKING & FACILITIES" title="駐車と現地設備" />
+    <div class="prose-jp text-sm leading-8 text-lake-700 sm:text-base">
+      <h2>駐車できる場所は、現地の範囲に従う</h2>
+      <p>湖岸周辺に車を止められる場合がありますが、常に区画線と管理ゲートがある一般的な駐車場と同じではありません。混雑時は通路を残し、道路上や私有地には駐車しないでください。</p>
+      <p>水位、砂地の状態、降雪、イベントにより車両が入れる範囲は変化します。愛車と富士山を撮る場合でも、水際へ進入できることを前提にしない計画が安全です。</p>
+
+      <h2>トイレは周辺施設も候補に</h2>
+      <p>湖岸の公衆設備は利用状況が変わることがあります。平野観光案内所や山中湖交流プラザ きららなど、周辺施設の開館時間と合わせて計画してください。</p>
+
+      <Notice title="到着したら最初に確認">
+        車両規制、湖岸のぬかるみ、工事、イベント表示、トイレの利用可否。公開情報よりも、現地の当日表示を優先します。
+      </Notice>
+    </div>
+  </section>
+
+  <script>
+    const button = document.querySelector('#copy-coordinates');
+    const status = document.querySelector('#copy-status');
+    button?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('35.4247002, 138.9008237');
+        if (status) status.textContent = 'コピーしました';
+      } catch {
+        if (status) status.textContent = '35.4247002, 138.9008237';
+      }
+    });
+  </script>
+</BaseLayout>

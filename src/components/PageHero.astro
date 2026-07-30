@@ -1,0 +1,24 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  image: string;
+  imageAlt: string;
+}
+const { eyebrow, title, lead, image, imageAlt } = Astro.props;
+---
+
+<section class="site-shell pt-10 sm:pt-14">
+  <div class="grid items-end gap-8 lg:grid-cols-[0.84fr_1.16fr]">
+    <div class="reveal pb-4 lg:pb-10">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1 class="mt-5 mincho text-[clamp(2.5rem,7vw,5.5rem)] leading-[1.22] tracking-[0.08em]">{title}</h1>
+      <p class="mt-7 max-w-xl text-[0.98rem] leading-8 text-lake-700">{lead}</p>
+    </div>
+    <figure class="relative overflow-hidden bg-lake-100">
+      <img src={image} alt={imageAlt} width="1600" height="1000" class="aspect-[4/3] w-full object-cover" fetchpriority="high" />
+      <figcaption class="absolute bottom-0 right-0 bg-[rgba(37,48,52,0.86)] px-4 py-2 text-[0.65rem] tracking-[0.12em] text-white">LAKE YAMANAKA</figcaption>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionIntro from '@/components/SectionIntro.astro';
+import Notice from '@/components/Notice.astro';
+---
+
+<BaseLayout title="ダイヤモンド富士｜平野の浜" description="山中湖・平野の浜で夕日のダイヤモンド富士を楽しむ時期、到着時間、撮影と防寒の注意点を紹介します。" pageType="article">
+  <PageHero eyebrow="DIAMOND FUJI" title="山頂に、夕日が重なる日。" lead="山中湖では秋から冬にかけて、富士山頂へ夕日が沈むダイヤモンド富士を見られます。平野の浜は、湖面と光を一緒に構成できる代表的な岸辺です。" image="/images/red-fuji.webp" imageAlt="夕暮れの光に染まる富士山" />
+
+  <section class="site-shell py-24 sm:py-32">
+    <div class="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+      <SectionIntro eyebrow="SEASON" title="狙い目は、晩秋と真冬。" copy="山中湖全体では、おおむね10月中旬から翌年2月下旬に夕日型のダイヤモンド富士を追えます。観測位置が日ごとに移動するため、平野の浜の目安時期を選びます。" />
+      <div class="grid gap-5 sm:grid-cols-2">
+        <article class="bg-lake-900 p-8 text-white">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">AUTUMN WINDOW</p>
+          <p class="mt-5 mincho text-4xl">10月下旬</p>
+          <p class="mt-4 text-sm leading-7 text-lake-200">平野湖畔へ観測位置が近づく時期の目安。日没が早いため、午後の移動を前倒しします。</p>
+        </article>
+        <article class="bg-sand-100 p-8">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-500">WINTER WINDOW</p>
+          <p class="mt-5 mincho text-4xl">2月中旬</p>
+          <p class="mt-4 text-sm leading-7 text-lake-700">空気が澄みやすく、雪化粧した富士山を狙える目安時期。路面凍結と厳しい冷え込みに備えます。</p>
+        </article>
+        <div class="sm:col-span-2">
+          <Notice title="日付は毎年・撮影位置ごとに変わります">
+            ここで示すのは季節の目安です。山頂に重なる正確な日と時刻は、山中湖の公式発表、天文計算、当日の雲量を出発直前に確認してください。
+          </Notice>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="THE DAY" title="当日の流れ" copy="太陽が山頂へ近づく時間は短く、混雑時は移動も難しくなります。撮影位置を探す時間まで含め、早めに岸辺へ。" />
+      <ol class="grid gap-8 lg:grid-cols-4">
+        {[
+          ['90分前', '平野地区へ到着', '駐車・バスの帰路・トイレを確認。湖岸の規制と風向きを見ます。'],
+          ['60分前', '構図を決める', '太陽と富士山の位置を確認し、通路を避けて待機します。'],
+          ['15分前', '露出を整える', '空の明るさを基準に。連写だけに頼らず、湖面と周囲も観察します。'],
+          ['日没後', '暗くなる前に移動', '冷え込みと凍結に注意。ライトを使い、忘れ物を確認して退出します。'],
+        ].map(([time, title, copy], index) => (
+          <li class="relative border-t hairline pt-5">
+            <p class="mincho text-4xl text-lake-300">0{index + 1}</p>
+            <p class="mt-4 text-xs font-bold tracking-[0.16em] text-dawn-600">{time}</p>
+            <h2 class="mt-2 mincho text-xl">{title}</h2>
+            <p class="mt-3 text-sm leading-7 text-lake-700">{copy}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="reading-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="PHOTO SETTINGS" title="太陽を撮るときの基本" />
+    <div class="prose-jp text-sm leading-8 text-lake-700 sm:text-base">
+      <h2>スマートフォン</h2>
+      <p>画面の空をタップし、明るさを少し下げます。富士山を極端に拡大すると画質が落ちるため、1〜3倍程度から試し、あとで切り取れる余白を残します。</p>
+      <h2>カメラ</h2>
+      <p>空の白飛びを抑え、RAWで残すと調整しやすくなります。太陽を長時間ファインダーで見続けず、ライブビューを活用します。撮影機材の取扱説明に従い、目とセンサーへの負担を避けてください。</p>
+      <h2>防寒</h2>
+      <p>2月の湖畔は風で体感温度が下がります。手袋、帽子、厚手の上着、温かい飲み物を準備し、三脚の金属部に素手で長く触れないようにします。</p>
+    </div>
+  </section>
+</BaseLayout>

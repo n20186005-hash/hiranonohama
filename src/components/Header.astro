@@ -1,0 +1,42 @@
+---
+import { navigation, siteConfig } from '@/config/site';
+const currentPath = Astro.url.pathname;
+---
+
+<header class="relative z-40 border-b hairline bg-[rgba(248,247,242,0.88)] backdrop-blur-xl">
+  <div class="site-shell flex min-h-20 items-center justify-between gap-6">
+    <a href="/" class="group flex items-center gap-4 no-underline" aria-label={`${siteConfig.name} トップページ`}>
+      <span class="grid size-10 place-items-center rounded-full border hairline font-serif-jp text-lg transition group-hover:bg-lake-900 group-hover:text-white">平</span>
+      <span>
+        <strong class="mincho block text-[1.05rem] tracking-[0.16em]">平野の浜</strong>
+        <span class="block text-[0.62rem] tracking-[0.2em] text-lake-600">LAKE YAMANAKA</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="メインナビゲーション">
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'relative py-7 text-[0.78rem] font-bold tracking-[0.08em] no-underline transition hover:text-lake-600',
+            currentPath.startsWith(item.href) && 'text-lake-600 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-lake-600',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <details class="group relative lg:hidden">
+      <summary class="cursor-pointer list-none rounded-full border hairline px-4 py-2 text-sm font-bold tracking-[0.1em] marker:hidden">目次</summary>
+      <div class="absolute right-0 top-[calc(100%+0.75rem)] w-72 border hairline bg-[#f8f7f2] p-3 shadow-xl shadow-lake-900/10">
+        <nav class="grid" aria-label="モバイルナビゲーション">
+          {navigation.map((item) => (
+            <a href={item.href} class="border-b hairline px-4 py-3 text-sm font-bold no-underline last:border-b-0">{item.label}</a>
+          ))}
+          <a href="/photo-card/" class="px-4 py-3 text-sm font-bold text-dawn-600 no-underline">旅の写真カード</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>
