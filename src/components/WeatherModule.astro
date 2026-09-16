@@ -1,0 +1,80 @@
+---
+import SectionIntro from '@/components/SectionIntro.astro';
+import { fetchWeather, renderWeatherHTML } from '@/lib/weather';
+
+let initial: any = null;
+try {
+  initial = await fetchWeather();
+} catch {
+  initial = null;
+}
+
+const emptyHTML =
+  '<p class="weather-empty">現在の天気を読み込み中です。しばらく経ってからページを再読み込みするか、当日の気象情報をご確認ください。</p>';
+---
+
+<section class="site-shell py-20 sm:py-28">
+  <SectionIntro
+    eyebrow="MOUNTAIN LAKE WEATHER"
+    title="平野の浜の天気と富士山"
+    copy="山中湖は天気が変わりやすく、晴れの予報でも山頂が雲に隠れることがあります。出発前に最新の表示をご確認ください。"
+  />
+
+  <div
+    id="weather"
+    class="weather-card"
+    data-initial={initial ? JSON.stringify(initial) : ''}
+    set:html={initial ? renderWeatherHTML(initial) : emptyHTML}
+  >
+  </div>
+</section>
+
+<script>
+  import { renderWeatherHTML, wireWeatherTabs, parseForecast, fetchAlerts, buildUrl } from '../lib/weather';
+
+  const root = document.getElementById('weather');
+  if (root) {
+    const CACHE_KEY = 'hnh-weather-v1';
+    const TTL = 30 * 60 * 1000; // 30分キャッシュ
+
+    function load() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+        if (cached && Date.now() - cached.t < TTL) {
+          root.innerHTML = renderWeatherHTML(cached.d);
+          wireWeatherTabs(root);
+          return;
+        }
+      } catch {}
+      fetch(buildUrl())
+        .then((r) => r.json())
+        .then((j) => {
+          const { current, daily } = parseForecast(j);
+          return fetchAlerts().then((alerts) => ({
+            current,
+            daily,
+            alerts,
+            fetchedAt: new Date().toISOString(),
+          }));
+        })
+        .then((d) => {
+          try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), d }));
+          } catch {}
+          root.innerHTML = renderWeatherHTML(d);
+          wireWeatherTabs(root);
+        })
+        .catch(() => {});
+    }
+
+    const initialRaw = root.dataset.initial;
+    if (initialRaw) {
+      try {
+        const d = JSON.parse(initialRaw);
+        root.innerHTML = renderWeatherHTML(d);
+        wireWeatherTabs(root);
+      } catch {}
+    }
+    load();
+  }
+</script>

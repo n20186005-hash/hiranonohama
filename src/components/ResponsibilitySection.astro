@@ -1,0 +1,43 @@
+---
+import SectionIntro from '@/components/SectionIntro.astro';
+import Notice from '@/components/Notice.astro';
+---
+
+<section class="bg-lake-900 py-24 text-white sm:py-32">
+  <div class="site-shell">
+    <SectionIntro
+      eyebrow="SCIENCE & STEWARDSHIP"
+      title="知ることで、守る静かな岸辺"
+      copy="平野の浜は観光地ではなく、富士山と山中湖がつくる自然の一部です。この景色が次の人にも届くよう、観察と配慮をあわせてお願いします。"
+    />
+    <div class="grid gap-px overflow-hidden bg-white/15 lg:grid-cols-2">
+      <article class="bg-lake-900 p-7 sm:p-9">
+        <h2 class="mincho text-2xl">野生鳥類との距離</h2>
+        <p class="mt-4 text-sm leading-7 text-lake-200">
+          冬の山中湖には白鳥やガン・カモ類が飛来します。餌やりは個体の生態や湖の水質に影響を与えるため、観察は距離をとって行います。近づきすぎると飛び立たせ、えさ場が減る原因になります。
+        </p>
+      </article>
+      <article class="bg-lake-900 p-7 sm:p-9">
+        <h2 class="mincho text-2xl">ゴミと持ち帰り</h2>
+        <p class="mt-4 text-sm leading-7 text-lake-200">
+          湖岸には常設のごみ箱がない場所が多くあります。持ち込んだものはすべて持ち帰り、燃え殻やたばこの吸い殻も含めて元の場所に残さないことが、水辺の生き物を守ります。
+        </p>
+      </article>
+      <article class="bg-lake-900 p-7 sm:p-9">
+        <h2 class="mincho text-2xl">水辺の安全と環境</h2>
+        <p class="mt-4 text-sm leading-7 text-lake-200">
+          岸辺は砂地や泥があり、水位や波で地形が変わります。植生や岸辺の生物を踏み荒らさないよう、道や固い場所を歩き、水際への進入は最小限にとどめます。
+        </p>
+      </article>
+      <article class="bg-lake-900 p-7 sm:p-9">
+        <h2 class="mincho text-2xl">地域との共生</h2>
+        <p class="mt-4 text-sm leading-7 text-lake-200">
+          平野の浜は地域の暮らしの場でもあります。駐車や撮影は係員と標識の案内に従い、静かに過ごすことで、住む人と訪れる人が同じ景色を共有できます。
+        </p>
+      </article>
+    </div>
+    <Notice title="観察の心得">
+      希少な生き物や美しい景色に出会ったとき、一番の配慮は「そのままの姿を残すこと」です。撮影や記録を楽しみながら、現地の表示と係員の案内を最優先してください。
+    </Notice>
+  </div>
+</section>

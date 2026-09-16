@@ -3,7 +3,8 @@ import BaseLayout from '@/components/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionIntro from '@/components/SectionIntro.astro';
 import Notice from '@/components/Notice.astro';
-import { siteConfig } from '@/config/site';
+import FacilitiesSection from '@/components/FacilitiesSection.astro';
+import { siteConfig, entity } from '@/config/site';
 ---
 
 <BaseLayout title="アクセス・駐車｜平野の浜" description="平野の浜への高速バス、周遊バス、自動車での行き方、駐車と冬季道路の注意点を案内します。">
@@ -43,6 +44,61 @@ import { siteConfig } from '@/config/site';
 
   <section class="bg-white/55 py-24 sm:py-32">
     <div class="site-shell">
+      <SectionIntro eyebrow="FROM AIRPORTS" title="空港から平野の浜へ" copy="最寄りは「山中湖平野」周辺です。空港からは一度、富士山方面の駅やバスターミナルを経由するのが一般的です。" />
+      <div class="grid gap-6 lg:grid-cols-3">
+        <article class="editorial-card p-7">
+          <p class="text-xs font-bold tracking-[0.16em] text-lake-500">MT. FUJI SHIZUOKA</p>
+          <h2 class="mt-4 mincho text-2xl">富士山静岡空港から</h2>
+          <ol class="mt-5 space-y-4 text-sm leading-7 text-lake-700">
+            <li><strong class="text-lake-900">1.</strong> 空港から鉄道または連絡バスで富士・御殿場方面へ</li>
+            <li><strong class="text-lake-900">2.</strong> 御殿場や河口湖を経由して山中湖へ</li>
+            <li><strong class="text-lake-900">3.</strong> 「山中湖平野」周辺で下車、湖側へ徒歩</li>
+          </ol>
+          <p class="mt-6 border-t hairline pt-5 text-xs leading-6 text-lake-600">空港直結の公共交通は本数が限られるため、乗継ぎ時間に余裕を持たせます。</p>
+        </article>
+        <article class="editorial-card p-7">
+          <p class="text-xs font-bold tracking-[0.16em] text-lake-500">HANEDA</p>
+          <h2 class="mt-4 mincho text-2xl">羽田空港から</h2>
+          <ol class="mt-5 space-y-4 text-sm leading-7 text-lake-700">
+            <li><strong class="text-lake-900">1.</strong> 鉄道で東京都心を経由し富士急行線へ</li>
+            <li><strong class="text-lake-900">2.</strong> または高速バスで富士五湖方面へ直行</li>
+            <li><strong class="text-lake-900">3.</strong> 河口湖・山中湖で周遊バスに乗継ぎ</li>
+          </ol>
+          <p class="mt-6 border-t hairline pt-5 text-xs leading-6 text-lake-600">鉄道とバス、どちらも日中の便を選ぶと乗継ぎが楽です。</p>
+        </article>
+        <article class="editorial-card p-7">
+          <p class="text-xs font-bold tracking-[0.16em] text-lake-500">NARITA</p>
+          <h2 class="mt-4 mincho text-2xl">成田空港から</h2>
+          <ol class="mt-5 space-y-4 text-sm leading-7 text-lake-700">
+            <li><strong class="text-lake-900">1.</strong> 都心方面へ鉄道で移動</li>
+            <li><strong class="text-lake-900">2.</strong> 新宿・東京などから富士五湖方面へ</li>
+            <li><strong class="text-lake-900">3.</strong> 山中湖平野周辺で下車</li>
+          </ol>
+          <p class="mt-6 border-t hairline pt-5 text-xs leading-6 text-lake-600">都心乗継ぎが必要な分、到着日に現地へ着くなら早めの便が現実的です。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="TAXI & RIDESHARE" title="タクシー・配車で行く" copy="最寄りの駅や周遊バスの停留所から、平野の浜まではタクシーで数分の場合が多いです。日の出撮影の早朝は配車に時間がかかるため、前泊か事前予約が現実的です。" />
+    <div class="grid gap-6 lg:grid-cols-2">
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">FROM STATION / BUS STOP</p>
+        <h2 class="mt-4 mincho text-2xl">駅・バス停から</h2>
+        <p class="mt-5 text-sm leading-7 text-lake-700">最寄りの鉄道駅や周遊バスの停留所からタクシーを利用できる場合があります。湖岸までは短距離のことが多いものの、早朝・深夜は配車待ちが発生しやすい時間帯です。</p>
+      </article>
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">RIDESHARE APPS</p>
+        <h2 class="mt-4 mincho text-2xl">配車アプリ</h2>
+        <p class="mt-5 text-sm leading-7 text-lake-700">地域によって対応する配車サービスや待ち時間が異なります。到着前にアプリのカバー範囲と、山間部での通信状況を確認しておくと安心です。</p>
+      </article>
+    </div>
+    <p class="mt-6 text-sm leading-7 text-lake-600">※ 湖岸への最終区間は徒歩圏のことが多く、天候や路面状況によっては手前の安全な場所で降りて歩く選択もあります。</p>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
       <SectionIntro eyebrow="BY CAR" title="自動車で行く" copy="東富士五湖道路の山中湖ICから、平野方面へ約15分が目安です。カーナビにはスポット名か座標を入力します。" />
       <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
         <div class="border-y hairline">
@@ -76,6 +132,11 @@ import { siteConfig } from '@/config/site';
             <p class="eyebrow">LOCATION MAP</p>
             <h2 class="mt-4 mincho text-3xl tracking-[0.06em] text-lake-900 sm:text-4xl">地図で平野の浜を確認</h2>
             <p class="mt-4 max-w-3xl text-sm leading-8 text-lake-700">湖岸への入口や当日の通行範囲は現地表示を優先してください。地図は位置の確認に使い、駐車場所は標識と係員の案内に従います。</p>
+            <p class="mt-5 text-xs leading-6 text-lake-600">
+              地域の公式観光情報は
+              <a href={entity.govtTourismUrl} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2">山梨県 公式観光ポータル↗</a>
+              でもご確認いただけます。
+            </p>
           </div>
           <a href="https://www.google.com/maps/search/?api=1&amp;query=35.4247002%2C138.9008237" class="cta-button cta-button--dark whitespace-nowrap" target="_blank" rel="noopener noreferrer">Google マップで開く</a>
         </div>
@@ -109,6 +170,8 @@ import { siteConfig } from '@/config/site';
       </Notice>
     </div>
   </section>
+
+  <FacilitiesSection />
 
   <script>
     const button = document.querySelector('#copy-coordinates');

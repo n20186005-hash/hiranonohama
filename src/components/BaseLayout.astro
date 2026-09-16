@@ -1,7 +1,7 @@
 ---
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { DEFAULT_SITE_URL, siteConfig } from '@/config/site';
+import { DEFAULT_SITE_URL, siteConfig, entity, navigation } from '@/config/site';
 import '@/styles/global.css';
 
 interface Props {
@@ -23,6 +23,33 @@ const {
 const baseUrl = Astro.site ?? new URL(DEFAULT_SITE_URL);
 const canonical = new URL(Astro.url.pathname, baseUrl).toString();
 const socialImage = new URL(image, baseUrl).toString();
+
+// パンくずリスト（SERP の経路表示に利用）
+const navMap = Object.fromEntries(navigation.map((n) => [n.href, n.label]));
+const segments = Astro.url.pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+const crumbs = [{ name: 'ホーム', url: baseUrl.toString() }];
+let acc = '';
+for (const seg of segments) {
+  acc += `/${seg}`;
+  const href = `${acc}/`;
+  crumbs.push({
+    name: navMap[href] ?? decodeURIComponent(seg).replace(/-/g, ' '),
+    url: new URL(href, baseUrl).toString(),
+  });
+}
+const breadcrumb =
+  crumbs.length > 1
+    ? {
+        '@type': 'BreadcrumbList',
+        itemListElement: crumbs.map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: c.name,
+          item: c.url,
+        })),
+      }
+    : null;
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -35,23 +62,35 @@ const structuredData = {
     },
     {
       '@type': 'TouristAttraction',
-      name: '平野の浜',
+      '@id': `${baseUrl.toString()}#attraction`,
+      name: entity.fullName,
+      alternateName: [entity.shortName, entity.romanized, 'Hirano beach', `${entity.city} ${entity.shortName}`],
       description: siteConfig.description,
-      image: socialImage,
+      url: baseUrl.toString(),
+      image: [socialImage, new URL(siteConfig.defaultImage, baseUrl).toString()],
+      isAccessibleForFree: true,
+      amenityFeature: {
+        '@type': 'LocationFeatureSpecification',
+        name: '駐車',
+        value: true,
+      },
       address: {
         '@type': 'PostalAddress',
-        addressRegion: '山梨県',
-        addressLocality: '南都留郡山中湖村',
-        streetAddress: '平野',
-        addressCountry: 'JP',
+        streetAddress: entity.streetAddress,
+        addressLocality: entity.city,
+        addressRegion: entity.stateProvince,
+        postalCode: entity.postalCode,
+        addressCountry: entity.countryCode,
       },
       geo: {
         '@type': 'GeoCoordinates',
         latitude: siteConfig.coordinates.latitude,
         longitude: siteConfig.coordinates.longitude,
       },
-      isAccessibleForFree: true,
+      hasMap: entity.mapsShareUrl,
+      sameAs: [entity.mapsShareUrl, entity.govtTourismUrl],
     },
+    ...(breadcrumb ? [breadcrumb] : []),
   ],
 };
 ---
@@ -66,6 +105,10 @@ const structuredData = {
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content={siteConfig.name} />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta property="og:type" content={pageType} />
     <meta property="og:locale" content={siteConfig.locale} />
@@ -97,5 +140,13 @@ const structuredData = {
       <slot />
     </main>
     <Footer />
+
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

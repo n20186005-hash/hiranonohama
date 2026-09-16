@@ -322,3 +322,463 @@ a {
     animation: none;
   }
 }
+
+/* 評価（Google マップ ユーザー評価より同期） */
+.review-rating {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.review-rating__score {
+  font-family: var(--font-serif-jp);
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.review-rating__count {
+  font-size: 0.9rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.review-stars {
+  position: relative;
+  display: inline-block;
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+}
+
+.review-stars__bg {
+  color: rgba(37, 48, 52, 0.18);
+}
+
+.review-stars__fg {
+  position: absolute;
+  inset: 0;
+  width: var(--pct, 0%);
+  overflow: hidden;
+  white-space: nowrap;
+  color: #d9a441;
+}
+
+.review-sync {
+  margin-top: 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.review-sync a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.review-sync a:hover {
+  color: var(--ink);
+}
+
+.review-note {
+  margin-top: 1.1rem;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* 資料・出典ブロック */
+.sources-section {
+  border-top: 1px solid var(--rule);
+  background: rgba(248, 247, 242, 0.6);
+}
+
+.sources-section dl {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.4rem 1.2rem;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+.sources-section dt {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--lake-600, #50676c);
+}
+
+.sources-section dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.sources-section a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumb-entity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.breadcrumb-entity span[aria-hidden] {
+  opacity: 0.5;
+}
+
+/* 天気モジュール（Open-Meteo のデータを表示） */
+.weather-card {
+  border: 1px solid var(--rule);
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 247, 242, 0.82));
+  padding: 1.4rem 1.5rem 1.5rem;
+  box-shadow: 0 1rem 2.4rem rgba(18, 29, 33, 0.08);
+}
+
+.weather-now {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.4rem 2rem;
+}
+
+.weather-now__main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.weather-now__icon {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.weather-now__temp {
+  font-family: var(--font-serif-jp);
+  font-size: clamp(2.8rem, 7vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.weather-now__unit {
+  font-size: 1.4rem;
+  margin-left: 0.15rem;
+}
+
+.weather-now__label {
+  font-size: 0.95rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.weather-now__stats {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0.3rem 1.6rem;
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.weather-now__stats div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.weather-now__stats dt {
+  color: var(--muted);
+}
+
+.weather-now__stats dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.weather-hint {
+  margin-top: 1rem;
+  padding: 0.7rem 0.95rem;
+  border-radius: 0.7rem;
+  background: rgba(127, 159, 164, 0.14);
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  color: var(--lake-700, #38515a);
+}
+
+.weather-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin: 1.3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.weather-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.7rem 0.3rem;
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.66);
+  text-align: center;
+}
+
+.weather-day.is-today {
+  background: var(--lake-900);
+  color: #fff;
+}
+
+.weather-day__name {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.weather-day__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.weather-day__temp {
+  font-size: 0.78rem;
+}
+
+.weather-day__temp b {
+  font-weight: 700;
+}
+
+.weather-day__rain {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.weather-day.is-today .weather-day__rain {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.weather-meta {
+  margin: 1rem 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.weather-empty {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .weather-days {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .weather-day:nth-child(n + 5) {
+    margin-top: 0.5rem;
+  }
+}
+
+/* 設備・周辺施設（タイプ中立の概要） */
+.facility-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.facility-card {
+  border: 1px solid var(--rule);
+  border-radius: 0.9rem;
+  padding: 1.4rem 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.facility-card__label {
+  font-family: var(--font-serif-jp);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.facility-card__note {
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* 季節戦略表 */
+.season-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.season-table th,
+.season-table td {
+  border: 1px solid var(--rule);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.season-table thead th {
+  background: var(--lake-900);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.season-table tbody th {
+  background: rgba(127, 159, 164, 0.12);
+  font-family: var(--font-serif-jp);
+  font-weight: 500;
+  width: 7rem;
+  white-space: nowrap;
+}
+
+.season-table td {
+  color: var(--lake-700, #38515a);
+}
+
+.season-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ルート案内 */
+.route-card {
+  border: 1px solid var(--rule);
+  border-radius: 1rem;
+  padding: 1.6rem 1.7rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.route-card__tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(127, 159, 164, 0.2);
+  color: var(--lake-700, #38515a);
+}
+
+.route-card__title {
+  margin-top: 0.8rem;
+  font-family: var(--font-serif-jp);
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.route-card__time {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.route-card ol {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.86rem;
+  line-height: 1.85;
+  color: var(--lake-700, #38515a);
+}
+
+.route-card__note {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* 天気アドバイス（リスク / タブ / パネル） */
+.weather-risk {
+  margin-bottom: 1.1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.7rem;
+  background: #fbe9e7;
+  border: 1px solid #ef9a9a;
+  color: #7f1d1d;
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.weather-risk p {
+  margin: 0;
+}
+
+.weather-risk p + p {
+  margin-top: 0.4rem;
+}
+
+.weather-advice {
+  margin-top: 1.3rem;
+}
+
+.weather-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+
+.weather-tab {
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.weather-tab.is-active {
+  background: var(--lake-900);
+  color: #fff;
+  border-color: var(--lake-900);
+}
+
+.weather-panel {
+  display: block;
+}
+
+/* JS が有効な場合のみ、非アクティブなパネルを隠す（なしでも全部閲覧可） */
+.weather-card.has-tabs .weather-panel {
+  display: none;
+}
+
+.weather-card.has-tabs .weather-panel.is-active {
+  display: block;
+}
+
+.weather-panel ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.82rem;
+  line-height: 1.85;
+  color: var(--lake-700, #38515a);
+}
+
+.weather-panel li {
+  margin: 0.25rem 0;
+}

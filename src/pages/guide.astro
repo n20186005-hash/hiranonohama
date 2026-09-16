@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@/components/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import WeatherModule from '@/components/WeatherModule.astro';
+import SeasonsSection from '@/components/SeasonsSection.astro';
+import ItinerariesSection from '@/components/ItinerariesSection.astro';
+import ResponsibilitySection from '@/components/ResponsibilitySection.astro';
+---
+
+<BaseLayout
+  title="過ごし方ガイド｜平野の浜"
+  description="平野の浜の天気、季節ごとの楽しみ方、旅の構成別ルート、訪客としての心得をまとめた非公式ガイド。"
+>
+  <PageHero
+    eyebrow="VISIT GUIDE"
+    title="静かな岸辺の、過ごし方。"
+    lead="天気、季節、ルート、そして守るべきマナー。平野の浜を満喫するための要点をひとつにまとめました。"
+    image="/images/summer-reflection.webp"
+    imageAlt="夏の山中湖と富士山の湖面反射"
+  />
+
+  <WeatherModule />
+  <SeasonsSection />
+  <ItinerariesSection />
+  <ResponsibilitySection />
+</BaseLayout>

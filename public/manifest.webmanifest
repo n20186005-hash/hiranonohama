@@ -1,16 +1,29 @@
 {
+  "id": "/",
   "name": "平野の浜｜山中湖と富士山の絶景ガイド",
   "short_name": "平野の浜",
+  "description": "山中湖・平野の浜の見どころ、富士山撮影、ダイヤモンド富士、アクセス、周辺の食事と立ち寄り先をまとめた非公式観光ガイド。",
   "lang": "ja",
+  "dir": "ltr",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#f8f7f2",
   "theme_color": "#253034",
+  "categories": ["travel", "tourism", "navigation"],
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }

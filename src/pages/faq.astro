@@ -3,9 +3,23 @@ import BaseLayout from '@/components/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionIntro from '@/components/SectionIntro.astro';
 import { faqs } from '@/data/content';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
 ---
 
 <BaseLayout title="よくある質問｜平野の浜" description="平野の浜の入場料、利用時間、駐車、トイレ、富士山、白鳥、冬の運転、キャンプについて回答します。">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
   <PageHero eyebrow="FAQ" title="訪れる前に、知っておくこと。" lead="湖岸は自然条件と現地運用の影響を受けます。変わりやすい情報を断定せず、当日に安全な判断ができるよう基本をまとめました。" image="/images/winter-swan.webp" imageAlt="山中湖の白鳥と富士山" />
 
   <section class="reading-shell py-24 sm:py-32">

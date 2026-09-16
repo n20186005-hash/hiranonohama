@@ -1,0 +1,56 @@
+---
+import { reviews, entity } from '@/config/site';
+const countText = reviews.count.toLocaleString('ja-JP');
+---
+
+<section class="sources-section">
+  <div class="site-shell py-16 sm:py-20">
+    <p class="eyebrow">SOURCES</p>
+    <h2 class="section-title mt-4 text-[clamp(1.6rem,4vw,2.6rem)]">資料・出典</h2>
+    <p class="section-copy mt-5 text-sm leading-8">
+      本サイトは非公式の観光ガイドです。評価・所在地・周辺情報の出典を明記し、現地の公式案内を優先する方針をとっています。
+    </p>
+
+    <div class="mt-10 grid gap-10 lg:grid-cols-2">
+      <dl>
+        <dt>評価</dt>
+        <dd>
+          {reviews.rating.toFixed(1)}（{countText} 件）· 同期日 {reviews.syncMonth}
+          <br />
+          <a href={reviews.mapsUrl} target="_blank" rel="noopener noreferrer">Google マップで全ての口コミを見る↗</a>
+        </dd>
+
+        <dt>評価の出典</dt>
+        <dd>
+          本評価は Google マップのユーザー評価より同期。同期日：{reviews.syncMonth}。著作権は原作者および Google マップに帰属します。
+        </dd>
+
+        <dt>所在地</dt>
+        <dd>{entity.streetAddress}（{entity.postalCode}）</dd>
+
+        <dt>地図</dt>
+        <dd>
+          <a href={entity.mapsShareUrl} target="_blank" rel="noopener noreferrer">Google マップ（共有リンク）↗</a>
+        </dd>
+
+        <dt>公式観光</dt>
+        <dd>
+          <a href={entity.govtTourismUrl} target="_blank" rel="noopener noreferrer">山梨県 公式観光ポータル↗</a>
+        </dd>
+
+        <dt>写真</dt>
+        <dd>Alpsdake / Wikimedia Commons（CC0・Public Domain）</dd>
+      </dl>
+
+      <div class="border-t hairline pt-8 lg:border-l lg:border-t-0 lg:pl-10">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">DISCLAIMER</p>
+        <p class="mt-4 text-sm leading-8 text-lake-700">
+          営業時間、交通、道路、湖岸利用、駐車、天候などの条件は予告なく変わることがあります。本サイトの記載より、現地の標識・案内および各運営者の最新情報を優先してください。
+        </p>
+        <p class="mt-5 text-sm leading-8 text-lake-700">
+          評価・口コミは Google マップのユーザー評価を同期したものであり、本サイトが独自に収集・作成したものではありません。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

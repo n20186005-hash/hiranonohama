@@ -1,7 +1,29 @@
+# 依存関係・ビルド成果物（Cloudflare Workers への手動デプロイ時は dist/ のみアップロード）
 node_modules/
 dist/
 .astro/
 .wrangler/
+
+# ローカル環境・ secrets
 .dev.vars
 .env
+.env.*
+*.local
+
+# ログ・一時ファイル
+*.log
+build.log
+npm-debug.log*
+v.txt
+
+# パッケージマネージャーのロック（本プロジェクトは pnpm を使用）
+package-lock.json
+
+# OS / エディタ
 .DS_Store
+Thumbs.db
+
+# ツール固有
+.codebuddy/
+.idea/
+.vscode/

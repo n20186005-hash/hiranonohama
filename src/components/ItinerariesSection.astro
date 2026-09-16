@@ -1,0 +1,83 @@
+---
+import SectionIntro from '@/components/SectionIntro.astro';
+---
+
+<section class="site-shell py-20 sm:py-28">
+  <SectionIntro
+    eyebrow="ROUTES BY TRAVELER"
+    title="旅の構成で選ぶ、3つのルート"
+    copy="同行者のペースと関心に合わせて、無理のない動線を組みましょう。いずれも「現地の表示を優先」が前提です。"
+  />
+
+  <div class="grid gap-6 lg:grid-cols-3">
+    <article class="route-card">
+      <span class="route-card__tag">ファミリー</span>
+      <h2 class="route-card__title">亲子で湖畔さんぽ</h2>
+      <p class="route-card__time">目安：半日</p>
+      <ol>
+        <li>平野の浜で富士山と湖面をゆっくり観察</li>
+        <li>白鳥などの水鳥を、距離をとって観察</li>
+        <li>周辺施設でトイレ・休憩をはさむ</li>
+        <li>きららなど湖畔の施設で遊ぶ・休む</li>
+      </ol>
+      <p class="route-card__note">ベビーカーでの移動は平坦な場所が安心です。岸辺の砂地やぬかるみは避け、休憩できる施設と合わせて計画します。</p>
+    </article>
+
+    <article class="route-card">
+      <span class="route-card__tag">撮影・自然</span>
+      <h2 class="route-card__title">富士山を撮る朝</h2>
+      <p class="route-card__time">目安：早朝〜半日</p>
+      <ol>
+        <li>日の出前に到着し、構図を決める</li>
+        <li>風が止む瞬間の逆さ富士を狙う</li>
+        <li>ダイヤモンド富士の季節は夕方も計画</li>
+        <li>明神山や別角度の湖岸へ足を延ばす</li>
+      </ol>
+      <p class="route-card__note">三脚と防寒具は必携。早朝の公共交通がない日が多いため、前泊か事前の移動手段を確保します。</p>
+    </article>
+
+    <article class="route-card">
+      <span class="route-card__tag">バリアフリー</span>
+      <h2 class="route-card__title">ゆっくり楽しむ岸辺</h2>
+      <p class="route-card__time">目安：半日</p>
+      <ol>
+        <li>駐車場から平坦な湖畔へ</li>
+        <li>車窓や展望デッキからも富士山を観賞</li>
+        <li>周辺施設のトイレを活用する</li>
+        <li>無理せず、日陰や屋内で休む</li>
+      </ol>
+      <p class="route-card__note">長距離の歩行や砂地は避け、体調と天候を見ながら少しずつ回ります。冬季は凍結箇所に注意します。</p>
+    </article>
+  </div>
+
+  <div class="mt-16">
+    <SectionIntro eyebrow="GENERAL ITINERARY" title="共通の過ごし方（半日 / 全日）" copy="時間のめどだけ決めて、天候と体調に合わせて組み替えてください。" />
+    <div class="grid gap-6 lg:grid-cols-2">
+      <article class="route-card">
+        <span class="route-card__tag">半日</span>
+        <h2 class="route-card__title">湖畔散策コース</h2>
+        <p class="route-card__time">目安：3–4時間</p>
+        <ol>
+          <li>平野の浜に到着、富士山と湖面を観察</li>
+          <li>周辺をゆっくり散策</li>
+          <li>村の中心部で食事・買い物</li>
+          <li>夕方の光を眺めて帰路へ</li>
+        </ol>
+        <p class="route-card__note">気軽に回れるため、日帰りのついでにも最適です。</p>
+      </article>
+      <article class="route-card">
+        <span class="route-card__tag">一日</span>
+        <h2 class="route-card__title">山中湖ぐるりコース</h2>
+        <p class="route-card__time">目安：6–8時間</p>
+        <ol>
+          <li>早朝に平野の浜で撮影・観察</li>
+          <li>きらら・明神山パノラマ台・平野天満宮へ</li>
+          <li>昼は村で食事と休憩</li>
+          <li>ダイヤモンド富士の季節は夕方の湖岸へ</li>
+          <li>温泉や宿で締める</li>
+        </ol>
+        <p class="route-card__note">季節の狙い（逆さ富士・紅葉・白鳥）に合わせ、動線の順序を入れ替えます。</p>
+      </article>
+    </div>
+  </div>
+</section>

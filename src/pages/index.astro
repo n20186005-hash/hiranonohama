@@ -2,12 +2,19 @@
 import BaseLayout from '@/components/BaseLayout.astro';
 import SectionIntro from '@/components/SectionIntro.astro';
 import Notice from '@/components/Notice.astro';
+import ReviewSection from '@/components/ReviewSection.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+import WeatherModule from '@/components/WeatherModule.astro';
 import { seasons } from '@/data/content';
+import { entity } from '@/config/site';
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="平野の浜（山中湖）ガイド｜駐車場・富士山撮影・アクセス"
+  description="山中湖・平野の浜の完全ガイド。駐車場、富士山と白鳥の撮影ポイント、ダイヤモンド富士の見頃、バス・車のアクセスを分かりやすく解説。"
+>
   <section class="relative overflow-hidden bg-lake-900 text-white">
-    <img src="/images/hero.webp" alt="山中湖の白鳥と雪をいただく富士山" width="1800" height="1200" class="absolute inset-0 h-full w-full object-cover opacity-75" fetchpriority="high" />
+    <img src="/images/hero.webp" alt="平野の浜（山中湖）の白鳥と雪化粧の富士山" width="1800" height="1200" class="absolute inset-0 h-full w-full object-cover opacity-75" fetchpriority="high" />
     <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,29,33,0.82)_0%,rgba(18,29,33,0.34)_58%,rgba(18,29,33,0.18)_100%)]"></div>
     <div class="site-shell relative flex min-h-[72svh] items-end py-14 sm:min-h-[78svh] sm:py-20">
       <div class="grid w-full gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -45,6 +52,13 @@ import { seasons } from '@/data/content';
       </div>
     </div>
   </section>
+
+  <section class="site-shell py-16 sm:py-20">
+    <SectionIntro eyebrow="GOOGLE REVIEWS" title="訪れた人たちの評価" copy={`${entity.shortName}の評価と口コミ数は、Google マップのユーザー評価より同期しています。最新の口コミは Google マップでご確認ください。`} />
+    <ReviewSection />
+  </section>
+
+  <WeatherModule />
 
   <section class="site-shell py-24 sm:py-32">
     <div class="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
@@ -112,6 +126,100 @@ import { seasons } from '@/data/content';
     </div>
   </section>
 
+  <section class="site-shell py-24 sm:py-32">
+    <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div>
+        <SectionIntro eyebrow="ABOUT THE SHORE" title="平野の浜について" copy={`${entity.shortName}（${entity.romanized}）は、${entity.city}（${entity.stateProvince}）の山中湖北東岸に広がる湖岸です。視界を遮るものが少ない岸辺から、富士山と湖面の変化をじっくり見る場所として親しまれています。`} />
+        <p class="breadcrumb-entity mt-6" aria-label="所在地の階層">
+          <span>{entity.shortName}</span>
+          <span aria-hidden="true">→</span>
+          <span>{entity.city}</span>
+          <span aria-hidden="true">→</span>
+          <span>{entity.stateProvince}</span>
+          <span aria-hidden="true">→</span>
+          <span>{entity.country}</span>
+        </p>
+        <a href="/access/" class="soft-link mt-8">平野の浜への行き方を見る</a>
+      </div>
+      <div class="relative lg:pl-16">
+        <img src="/images/reflection-fuji.webp" alt={`${entity.shortName}（${entity.city}）に映る富士山`} width="1600" height="1078" class="aspect-[5/4] w-full object-cover" loading="lazy" />
+        <div class="editorial-card -mt-12 ml-6 max-w-sm p-6 sm:ml-auto sm:mr-8">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-500">LOCATION</p>
+          <p class="mt-3 mincho text-xl leading-8">{entity.streetAddress}</p>
+          <p class="mt-2 text-sm text-lake-600">{entity.postalCode} · {entity.country}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-lake-900 py-24 text-white sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="LOCATION & ACCESS" title="平野の浜の場所と行き方" copy={`${entity.city}の湖岸へは、公共交通でも自動車でも訪れやすい場所です。最寄りは「山中湖平野」周辺。詳しい動線はアクセスページでまとめています。`} />
+      <div class="grid gap-px overflow-hidden bg-white/15 lg:grid-cols-3">
+        <article class="bg-lake-900 p-7 sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">REGION</p>
+          <h3 class="mt-4 mincho text-2xl">{entity.stateProvince}・{entity.city}</h3>
+          <p class="mt-4 text-sm leading-7 text-lake-200">{entity.shortName}は山中湖の北東岸に位置し、富士山を正面に望む代表的な岸辺のひとつです。</p>
+        </article>
+        <article class="bg-lake-900 p-7 sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">GET THERE</p>
+          <h3 class="mt-4 mincho text-2xl">アクセス</h3>
+          <p class="mt-4 text-sm leading-7 text-lake-200">新宿から高速バス、富士山駅・河口湖駅から周遊バス、自動車では山中湖ICから平野方面へ約15分が目安です。</p>
+        </article>
+        <article class="bg-lake-900 p-7 sm:p-9">
+          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">MAP</p>
+          <h3 class="mt-4 mincho text-2xl">地図で確認</h3>
+          <p class="mt-4 text-sm leading-7 text-lake-200">位置の確認には Google マップの共有リンクをご利用ください。当日の通行範囲は現地表示を優先します。</p>
+          <a href={entity.mapsShareUrl} target="_blank" rel="noopener noreferrer" class="soft-link mt-6 text-white">Google マップで見る↗</a>
+        </article>
+      </div>
+      <div class="mt-10">
+        <a href="/access/" class="cta-button cta-button--light">アクセス・駐車の詳細へ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="AROUND THE SHORE" title="平野の浜の周辺ランドマーク" copy={`${entity.shortName}を拠点に、展望、温泉、神社、別角度の湖岸へ足を延ばすと、山中湖の奥行きが見えてきます。代表的な周辺スポットをまとめています。`} />
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-dawn-600">LAKE SIDE</p>
+        <h3 class="mt-4 mincho text-2xl">山中湖交流プラザ きらら</h3>
+        <p class="mt-4 text-sm leading-7 text-lake-700">広い芝生と湖畔の眺めがある複合施設。平野の浜と組み合わせて散策・休憩の拠点に。</p>
+      </article>
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-dawn-600">VIEWPOINT</p>
+        <h3 class="mt-4 mincho text-2xl">明神山パノラマ台</h3>
+        <p class="mt-4 text-sm leading-7 text-lake-700">山中湖を見下ろし、その先に富士山を望む高所の景観。低い湖岸からの対比が魅力です。</p>
+      </article>
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-dawn-600">CULTURE</p>
+        <h3 class="mt-4 mincho text-2xl">平野天満宮</h3>
+        <p class="mt-4 text-sm leading-7 text-lake-700">平野地区の暮らしと信仰に触れられる神社。賑わいから少し離れ、地域の時間を感じられます。</p>
+      </article>
+    </div>
+    <div class="mt-10">
+      <a href="/nearby/" class="soft-link">周辺の立ち寄り先をすべて見る</a>
+    </div>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="HISTORY & SIGNIFICANCE" title="平野の浜の歴史と意味" copy={`${entity.shortName}は観光施設ではなく、地域の暮らしと富士山の風景が重なる岸辺です。古くから湖畔の暮らしを支え、今は静かな絶景を求める旅人の拠点となっています。`} />
+      <div class="prose-jp text-sm leading-8 text-lake-700 sm:text-base">
+        <h2>富士山を正面に望む岸辺</h2>
+        <p>山中湖の北東岸に広がる平野の浜は、視界を遮る建物が少なく、富士山を正面に望める岸辺のひとつです。風が止まれば逆さ富士が現れ、冬には雪化粧した山と白鳥が同じ景色に入ります。</p>
+        <h2>ダイヤモンド富士の名所</h2>
+        <p>秋から冬にかけて、富士山頂へ夕日が重なるダイヤモンド富士を楽しめる場所としても知られています。湖面と光を一緒に構成できるため、撮影を目的に訪れる人も少なくありません。</p>
+        <h2>地域とともに守る風景</h2>
+        <p>湖岸の利用範囲は天候や水位、季節によって変わります。地域の暮らしと自然環境への配慮を保ちながら、静かな岸辺を次の人へつなぐことが、この場所の意味につながっています。</p>
+      </div>
+      <div class="mt-10">
+        <a href="/diamond-fuji/" class="cta-button cta-button--dark">ダイヤモンド富士について</a>
+      </div>
+    </div>
+  </section>
+
   <section class="site-shell pb-12">
     <div class="relative overflow-hidden bg-sand-100 px-6 py-16 sm:px-12 lg:px-16">
       <div class="absolute right-0 top-0 h-full w-1/3 bg-[linear-gradient(135deg,transparent,rgba(127,159,164,0.22))]"></div>
@@ -125,4 +233,6 @@ import { seasons } from '@/data/content';
       </div>
     </div>
   </section>
+
+  <SourcesSection />
 </BaseLayout>

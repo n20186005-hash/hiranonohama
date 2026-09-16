@@ -1,0 +1,33 @@
+---
+import { reviews } from '@/config/site';
+
+// 評価はページ上の表示のみ。JSON-LD には含めず、Google マップの出典を明記する。
+const pct = Math.max(0, Math.min(100, (reviews.rating / reviews.bestRating) * 100));
+const countText = reviews.count.toLocaleString('ja-JP');
+---
+
+<section class="border hairline bg-white/60 p-7 sm:p-9" aria-label="Google マップの評価">
+  <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+    <div class="review-rating">
+      <span class="review-rating__score" aria-hidden="true">{reviews.rating.toFixed(1)}</span>
+      <span class="review-stars" role="img" aria-label={`Google マップのユーザー評価 ${reviews.rating.toFixed(1)}（5段階中）`}>
+        <span class="review-stars__bg">★★★★★</span>
+        <span class="review-stars__fg" style={`--pct:${pct}%`}>★★★★★</span>
+      </span>
+      <span class="review-rating__count">{countText} 件の評価</span>
+    </div>
+  </div>
+
+  <p class="review-sync">
+    評価と口コミ数は Google マップ（Google Maps）のユーザー評価より同期 · {reviews.syncMonth} ·
+    <a href={reviews.mapsUrl} target="_blank" rel="noopener noreferrer">Google マップで全ての口コミを見る↗</a>
+  </p>
+
+  <p class="review-note">
+    本評価は Google マップのユーザー評価より同期。同期日：{reviews.syncMonth}。著作権は原作者および Google マップに帰属します。
+  </p>
+
+  <a href={reviews.mapsUrl} target="_blank" rel="noopener noreferrer" class="cta-button cta-button--dark mt-6">
+    Google マップで全ての口コミを見る
+  </a>
+</section>
