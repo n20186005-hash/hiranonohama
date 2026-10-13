@@ -10,8 +10,8 @@ import { entity } from '@/config/site';
 ---
 
 <BaseLayout
-  title="平野の浜（山中湖）ガイド｜駐車場・富士山撮影・アクセス"
-  description="山中湖・平野の浜の完全ガイド。駐車場、富士山と白鳥の撮影ポイント、ダイヤモンド富士の見頃、バス・車のアクセスを分かりやすく解説。"
+  title="平野の浜（山中湖）｜駐車場・アクセス・富士山撮影ガイド"
+  description="山中湖の絶景スポット「平野の浜」を紹介。駐車場・アクセス・富士山の撮影時間・逆さ富士・ダイヤモンド富士の見頃など、訪問前に知りたい情報をまとめました。"
 >
   <section class="relative overflow-hidden bg-lake-900 text-white">
     <img src="/images/hero.webp" alt="平野の浜（山中湖）の白鳥と雪化粧の富士山" width="1800" height="1200" class="absolute inset-0 h-full w-full object-cover opacity-75" fetchpriority="high" />
@@ -20,11 +20,14 @@ import { entity } from '@/config/site';
       <div class="grid w-full gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
         <div class="reveal max-w-4xl">
           <p class="text-xs font-bold tracking-[0.24em] text-white/75">HIRANO NO HAMA · LAKE YAMANAKA</p>
-          <h1 class="mt-5 mincho text-[clamp(2.9rem,8vw,7.2rem)] leading-[1.14] tracking-[0.1em]">
-            湖面に映る富士を、<br class="hidden sm:block" />静かな岸辺から。
+          <h1 class="mt-5 mincho text-[clamp(2.4rem,6.4vw,5.4rem)] leading-[1.18] tracking-[0.08em]">
+            平野の浜｜<br class="hidden sm:block" />山中湖と富士山の絶景スポット
           </h1>
-          <p class="mt-7 max-w-2xl text-sm leading-8 text-white/82 sm:text-base">
-            山中湖の北東岸に広がる平野の浜。朝の光、風のない水面、白鳥の気配。富士山と向き合う時間を、迷わず組み立てるための旅案内です。
+          <p class="mt-6 max-w-2xl text-sm leading-8 text-white/82 sm:text-base">
+            湖面に映る富士を、静かな岸辺から。平野の浜（平野浜とも検索されます）は、山中湖の湖畔にある富士山の人気撮影スポットです。
+          </p>
+          <p class="mt-4 max-w-2xl text-sm leading-8 text-white/72 sm:text-base">
+            朝の光、風のない水面、白鳥の気配。富士山と向き合う時間を、迷わず組み立てるための旅案内です。
           </p>
           <div class="mt-9 flex flex-wrap gap-3">
             <a href="/access/" class="cta-button cta-button--light">行き方を見る</a>
@@ -140,6 +143,7 @@ import { entity } from '@/config/site';
           <span>{entity.country}</span>
         </p>
         <a href="/access/" class="soft-link mt-8">平野の浜への行き方を見る</a>
+        <a href="/faq/" class="soft-link mt-4">駐車場・料金などのよくある質問を見る</a>
       </div>
       <div class="relative lg:pl-16">
         <img src="/images/reflection-fuji.webp" alt={`${entity.shortName}（${entity.city}）に映る富士山`} width="1600" height="1078" class="aspect-[5/4] w-full object-cover" loading="lazy" />

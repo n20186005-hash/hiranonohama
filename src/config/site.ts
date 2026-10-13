@@ -11,9 +11,9 @@ export const MAPS_EMBED_SRC =
 // 注意：評価はページ上の表示のみとし、JSON-LD には含めない（Google ポリシー配慮）
 export const reviews = {
   rating: 4.6,
-  count: 1998,
+  count: 2019,
   bestRating: 5,
-  syncMonth: '2026年9月',
+  syncMonth: '2026年10月',
   source: 'Google マップ',
   mapsUrl: MAPS_SHARE_URL,
 } as const;
@@ -34,14 +34,16 @@ export const entity = {
   mapsEmbedSrc: MAPS_EMBED_SRC,
   // 山梨県 公式観光ポータル（地域・行政の権威リンク）
   govtTourismUrl: 'https://www.yamanashi-kankou.jp/',
+  // 山中湖観光協会（ダイヤモンド富士の公式目安時期を公開）
+  lakeYamanakakoUrl: 'https://www.lake-yamanakako.com/',
 } as const;
 
 export const siteConfig = {
   name: '平野の浜',
   domain: entity.domain,
-  title: '平野の浜（山中湖）ガイド｜駐車場・富士山撮影・アクセス',
+  title: '平野の浜（山中湖）｜駐車場・アクセス・富士山撮影ガイド',
   description:
-    '山中湖・平野の浜の完全ガイド。駐車場、富士山と白鳥の撮影ポイント、ダイヤモンド富士の見頃、バス・車のアクセスを分かりやすく解説。',
+    '山中湖の絶景スポット「平野の浜」を紹介。駐車場・アクセス・富士山の撮影時間・逆さ富士・ダイヤモンド富士の見頃など、訪問前に知りたい情報をまとめました。',
   locale: 'ja_JP',
   language: 'ja',
   ga4Id: 'G-HXM22WWPKP',

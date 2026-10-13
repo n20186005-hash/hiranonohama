@@ -3,28 +3,44 @@ import BaseLayout from '@/components/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import SectionIntro from '@/components/SectionIntro.astro';
 import Notice from '@/components/Notice.astro';
+import { entity } from '@/config/site';
+
+// 平野湖畔の目安観測時期（山中湖観光協会の公開資料を基準とした季節の目安）
+const windows = [
+  { period: '秋の目安', date: '10月下旬（おおむね10月27日前後）', note: '日没が早く、午後の移動を前倒ししやすい時期。空気が澄み始める前の季節です。' },
+  { period: '冬の目安', date: '2月中旬（おおむね2月16日前後）', note: '空気が最も澄みやすく、雪化粧した富士山を狙える目安時期。厳しい冷え込みと路面凍結に備えます。' },
+] as const;
+
+const positions = [
+  { name: '平野湖畔・北東岸の広い岸辺', point: '太陽が富士山頂へ沈む角度が、観測位置によって数日ずれる', note: '平野の浜は視界を遮るものが少ないため、富士山方向の水平線が見えやすい代表的な岸辺のひとつです。' },
+  { name: '少し南の岸辺', point: '山頂へ重なる日が数日早く、または遅くなる', note: '観測位置が緯度・経度でわずかに変わるだけで、年間の当たる日が移動します。' },
+  { name: '堤防・地形の高さ', point: '目線の高さで沈む位置が変わる', note: '湖岸の微地形や岸辺の高さも、太陽が山頂へ重なる瞬間の見え方に影響します。' },
+] as const;
+
+const weatherEffects = [
+  ['風', '湖面が波立つと、水面に映る太陽が揺れて写りにくくなります。風が弱い日を選ぶと、逆さ富士との両取りも狙えます。'],
+  ['雲', '山頂付近の雲はダイヤモンド富士の成否を左右します。晴れていても山だけ雲に隠れることがあるため、当日の空模様を確認します。'],
+  ['視界', '空気の澄み具合で山の輪郭のシャープさが変わります。湿度が高い日は遠景が霞みやすいため、前後の天候も含めて判断します。'],
+] as const;
 ---
 
-<BaseLayout title="ダイヤモンド富士｜平野の浜" description="山中湖・平野の浜で夕日のダイヤモンド富士を楽しむ時期、到着時間、撮影と防寒の注意点を紹介します。" pageType="article">
-  <PageHero eyebrow="DIAMOND FUJI" title="山頂に、夕日が重なる日。" lead="山中湖では秋から冬にかけて、富士山頂へ夕日が沈むダイヤモンド富士を見られます。平野の浜は、湖面と光を一緒に構成できる代表的な岸辺です。" image="/images/red-fuji.webp" imageAlt="夕暮れの光に染まる富士山" />
+<BaseLayout title="平野の浜のダイヤモンド富士｜2026年の見頃・時間・撮影場所" description="2026年秋から冬にかけて、平野の浜でダイヤモンド富士が見られる目安時期、観測位置の違い、撮影の時間帯と天候の影響、混雑時の駐車・撮影マナーをまとめました。" pageType="article">
+  <PageHero eyebrow="DIAMOND FUJI" title="平野の浜のダイヤモンド富士｜見頃と撮影ガイド" lead="山中湖では秋から冬にかけて、富士山頂へ夕日が沈むダイヤモンド富士を見られます。平野の浜は、湖面と光を一緒に構成できる代表的な岸辺です。" image="/images/red-fuji.webp" imageAlt="夕暮れの光に染まる富士山" />
 
   <section class="site-shell py-24 sm:py-32">
     <div class="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-      <SectionIntro eyebrow="SEASON" title="狙い目は、晩秋と真冬。" copy="山中湖全体では、おおむね10月中旬から翌年2月下旬に夕日型のダイヤモンド富士を追えます。観測位置が日ごとに移動するため、平野の浜の目安時期を選びます。" />
+      <SectionIntro eyebrow="SEASON 2026" title="2026年の目安時期" copy="山中湖全体では、おおむね10月中旬から翌年2月下旬に夕日型のダイヤモンド富士を追えます。平野の浜の目安時期は、観測位置ごとに数日ずれます。" />
       <div class="grid gap-5 sm:grid-cols-2">
-        <article class="bg-lake-900 p-8 text-white">
-          <p class="text-xs font-bold tracking-[0.18em] text-lake-300">AUTUMN WINDOW</p>
-          <p class="mt-5 mincho text-4xl">10月下旬</p>
-          <p class="mt-4 text-sm leading-7 text-lake-200">平野湖畔へ観測位置が近づく時期の目安。日没が早いため、午後の移動を前倒しします。</p>
-        </article>
-        <article class="bg-sand-100 p-8">
-          <p class="text-xs font-bold tracking-[0.18em] text-lake-500">WINTER WINDOW</p>
-          <p class="mt-5 mincho text-4xl">2月中旬</p>
-          <p class="mt-4 text-sm leading-7 text-lake-700">空気が澄みやすく、雪化粧した富士山を狙える目安時期。路面凍結と厳しい冷え込みに備えます。</p>
-        </article>
+        {windows.map((w) => (
+          <article class="bg-lake-900 p-8 text-white">
+            <p class="text-xs font-bold tracking-[0.18em] text-lake-300">{w.period}</p>
+            <p class="mt-5 mincho text-3xl leading-8">{w.date}</p>
+            <p class="mt-4 text-sm leading-7 text-lake-200">{w.note}</p>
+          </article>
+        ))}
         <div class="sm:col-span-2">
-          <Notice title="日付は毎年・撮影位置ごとに変わります">
-            ここで示すのは季節の目安です。山頂に重なる正確な日と時刻は、山中湖の公式発表、天文計算、当日の雲量を出発直前に確認してください。
+          <Notice title="正確な日と時刻は、毎年・観測位置ごとに変わります">
+            ここで示すのは季節の目安です。山頂に重なる正確な日と時刻は、山中湖の公式発表、天文計算、当日の雲量を出発直前に確認してください。当サイトの掲載は当日の保証ではありません。
           </Notice>
         </div>
       </div>
@@ -33,22 +49,68 @@ import Notice from '@/components/Notice.astro';
 
   <section class="bg-white/55 py-24 sm:py-32">
     <div class="site-shell">
-      <SectionIntro eyebrow="THE DAY" title="当日の流れ" copy="太陽が山頂へ近づく時間は短く、混雑時は移動も難しくなります。撮影位置を探す時間まで含め、早めに岸辺へ。" />
-      <ol class="grid gap-8 lg:grid-cols-4">
-        {[
-          ['90分前', '平野地区へ到着', '駐車・バスの帰路・トイレを確認。湖岸の規制と風向きを見ます。'],
-          ['60分前', '構図を決める', '太陽と富士山の位置を確認し、通路を避けて待機します。'],
-          ['15分前', '露出を整える', '空の明るさを基準に。連写だけに頼らず、湖面と周囲も観察します。'],
-          ['日没後', '暗くなる前に移動', '冷え込みと凍結に注意。ライトを使い、忘れ物を確認して退出します。'],
-        ].map(([time, title, copy], index) => (
-          <li class="relative border-t hairline pt-5">
-            <p class="mincho text-4xl text-lake-300">0{index + 1}</p>
-            <p class="mt-4 text-xs font-bold tracking-[0.16em] text-dawn-600">{time}</p>
-            <h2 class="mt-2 mincho text-xl">{title}</h2>
-            <p class="mt-3 text-sm leading-7 text-lake-700">{copy}</p>
-          </li>
+      <SectionIntro eyebrow="WHERE TO WATCH" title="平野湖畔での観測位置の違い" copy="ダイヤモンド富士は、太陽が山頂へ重なる日が観測位置によって数日ずれます。平野の浜周辺でも、立つ場所で狙える日が変わるため、前後の日程も含めて計画するとチャンスが広がります。" />
+      <div class="grid gap-6 lg:grid-cols-3">
+        {positions.map((p) => (
+          <article class="editorial-card p-7">
+            <p class="text-xs font-bold tracking-[0.16em] text-dawn-600">{p.name}</p>
+            <h2 class="mt-4 mincho text-xl leading-8">{p.point}</h2>
+            <p class="mt-4 text-sm leading-7 text-lake-700">{p.note}</p>
+          </article>
         ))}
-      </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="TIME TABLE" title="観測時間の目安（当日保証なし）" copy="太陽が山頂へ重なる瞬間は短く、日没時刻に近づきます。下記はあくまで目安であり、当日の天文計算と空模様で前後します。" />
+    <div class="overflow-x-auto border hairline">
+      <table class="w-full min-w-[640px] border-collapse text-sm">
+        <thead>
+          <tr class="bg-lake-900 text-white">
+            <th class="border hairline px-4 py-3 text-left font-bold">項目</th>
+            <th class="border hairline px-4 py-3 text-left font-bold">秋の目安（10月下旬）</th>
+            <th class="border hairline px-4 py-3 text-left font-bold">冬の目安（2月中旬）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="border hairline bg-lake-100 px-4 py-3 text-left font-bold">日没時刻の目安</th>
+            <td class="border hairline px-4 py-3">午後4時台後半〜5時前後</td>
+            <td class="border hairline px-4 py-3">午後5時前後</td>
+          </tr>
+          <tr>
+            <th class="border hairline bg-lake-100 px-4 py-3 text-left font-bold">山頂へ重なる目安</th>
+            <td class="border hairline px-4 py-3">日没の直前・数分単位</td>
+            <td class="border hairline px-4 py-3">日没の直前・数分単位</td>
+          </tr>
+          <tr>
+            <th class="border hairline bg-lake-100 px-4 py-3 text-left font-bold">現地への到着目安</th>
+            <td class="border hairline px-4 py-3">日没の90分前</td>
+            <td class="border hairline px-4 py-3">日没の90分前</td>
+          </tr>
+          <tr>
+            <th class="border hairline bg-lake-100 px-4 py-3 text-left font-bold">狙いやすい条件</th>
+            <td class="border hairline px-4 py-3">風の弱い日・山頂付近の雲が少ない日</td>
+            <td class="border hairline px-4 py-3">空気が澄む日・雪化粧の富士山</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-5 text-xs leading-6 text-lake-600">※ 日没時刻は年と観測位置で変わります。正確な日時は出発前に天文計算や山中湖の公式情報で確認してください。当サイトは当日の発生を保証するものではありません。</p>
+  </section>
+
+  <section class="bg-white/55 py-24 sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="WEATHER" title="風・雲・視界の影響" copy="ダイヤモンド富士の成否は天候に大きく左右されます。平野の浜に到着してからも、空模様と湖面の状態を確認します。" />
+      <div class="grid gap-6 lg:grid-cols-3">
+        {weatherEffects.map(([label, copy]) => (
+          <article class="editorial-card p-7">
+            <p class="text-xs font-bold tracking-[0.16em] text-lake-500">{label}</p>
+            <p class="mt-4 text-sm leading-7 text-lake-700">{copy}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -61,6 +123,48 @@ import Notice from '@/components/Notice.astro';
       <p>空の白飛びを抑え、RAWで残すと調整しやすくなります。太陽を長時間ファインダーで見続けず、ライブビューを活用します。撮影機材の取扱説明に従い、目とセンサーへの負担を避けてください。</p>
       <h2>防寒</h2>
       <p>2月の湖畔は風で体感温度が下がります。手袋、帽子、厚手の上着、温かい飲み物を準備し、三脚の金属部に素手で長く触れないようにします。</p>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 sm:py-32">
+    <SectionIntro eyebrow="PARKING & CROWD" title="駐車と混雑時の撮影マナー" copy="ダイヤモンド富士の目安時期は、平野の浜周辺も撮影者で混みます。狭い岸辺でのトラブルを避けるため、到着時間と駐車位置に余裕を持たせます。" />
+    <div class="grid gap-8 lg:grid-cols-2">
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">PARKING</p>
+        <h2 class="mt-4 mincho text-2xl">駐車できる範囲は当日の案内に従う</h2>
+        <p class="mt-4 text-sm leading-7 text-lake-700">湖岸周辺に車を止められる場合がありますが、区画された常設駐車場とは限りません。混雑時は早めに到着し、通路を塞がず、路上や私有地には駐車しないでください。水位や砂地の状態で入れる範囲が変わるため、現地の標識と案内を優先します。</p>
+      </article>
+      <article class="editorial-card p-7">
+        <p class="text-xs font-bold tracking-[0.16em] text-lake-500">MANNERS</p>
+        <h2 class="mt-4 mincho text-2xl">三脚と通行の配慮</h2>
+        <p class="mt-4 text-sm leading-7 text-lake-700">三脚は通行を塞がない場所に短時間で設置し、撮影後は速やかに片付けます。白鳥や野鳥を追い回さず、他の撮影者の構図も妨げないよう距離を保ちます。暗くなる前に、凍結や帰路の渋滞に備えて移動を始めます。</p>
+      </article>
+    </div>
+    <div class="mt-10">
+      <Notice title="最後は現地の表示を確認">
+        車両規制、湖岸の利用範囲、工事、イベントは変わります。本サイトの目安より、現地の当日表示と各運営者の最新情報を優先してください。
+      </Notice>
+    </div>
+  </section>
+
+  <section class="bg-lake-900 py-24 text-white sm:py-32">
+    <div class="site-shell">
+      <SectionIntro eyebrow="OFFICIAL INFO" title="公式情報で最終確認を" copy="正確な観測時期や当地の運用は、山中湖の公式観光情報をご確認ください。当サイトは非公式の旅の計画ガイドです。" />
+      <div class="grid gap-6 sm:grid-cols-2">
+        <a href={entity.lakeYamanakakoUrl} target="_blank" rel="noopener noreferrer" class="editorial-card bg-lake-900 p-7 no-underline transition hover:-translate-y-0.5">
+          <p class="text-xs font-bold tracking-[0.16em] text-lake-300">LAKE YAMANAKA</p>
+          <h2 class="mt-4 mincho text-2xl text-white">山中湖観光協会（公式）</h2>
+          <p class="mt-3 text-sm leading-7 text-lake-200">ダイヤモンド富士の目安時期や当地の観光情報を確認できます。↗</p>
+        </a>
+        <a href={entity.govtTourismUrl} target="_blank" rel="noopener noreferrer" class="editorial-card bg-lake-900 p-7 no-underline transition hover:-translate-y-0.5">
+          <p class="text-xs font-bold tracking-[0.16em] text-lake-300">YAMANASHI</p>
+          <h2 class="mt-4 mincho text-2xl text-white">山梨県 公式観光ポータル</h2>
+          <p class="mt-3 text-sm leading-7 text-lake-200">地域・行政の公式観光情報を確認できます。↗</p>
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href="/photo/" class="cta-button cta-button--light">富士山の撮影ガイドを見る</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
